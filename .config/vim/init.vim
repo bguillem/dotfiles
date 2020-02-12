@@ -1,9 +1,9 @@
 let mapleader =","
 
-if ! filereadable(expand('~/.config/vim/autoload/plug.vim'))
+if ! filereadable(expand('~/.vim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ~/.config/vim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/vim/autoload/plug.vim
+	silent !mkdir -p ~/.vim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.vim/autoload/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -11,37 +11,44 @@ call plug#begin('~/.config/vim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'jreybert/vimagit'
 Plug 'lukesmithxyz/vimling'
-Plug 'LeBarbu/vim-epitech'
+Plug 'Yohannfra/Vim-Epitech'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'bluz71/vim-moonfly-colors'
+Plug 'bluz71/vim-nightfly-guicolors'
 call plug#end()
 
-set bg=light
+set bg=dark
+set termguicolors
 set go=a
 set mouse=a
 set nohlsearch
 set clipboard+=unnamedplus
 
-colorscheme moonfly
+" Colors :
+	colorscheme nightfly
+	let g:lightline = { 'colorscheme': 'nightfly'}
+
+" Column at 80 characters :
+	setlocal colorcolumn=81
 
 " Some basics:
 	nnoremap c "_c
 	set nocompatible
-    set expandtab
-    set shiftwidth=4
-    set softtabstop=4
-    set tabstop=4
+	set expandtab
+        set shiftwidth=4
+        set softtabstop=4
+        set tabstop=4
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
-	set number relativenumber
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -66,12 +73,6 @@ colorscheme moonfly
 	nm <leader>i :call ToggleIPA()<CR>
 	imap <leader>i <esc>:call ToggleIPA()<CR>a
 	nm <leader>q :call ToggleProse()<CR>
-
-" vim-epitech
-let g:epi_mode_auto = 0
-
-" lightline
-let g:lightline = {'colorscheme': 'moonfly'}
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
