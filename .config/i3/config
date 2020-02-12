@@ -34,7 +34,7 @@ for_window [instance="dropdown_*"] move position center
 bar {
 	font pango:mono 10
 	status_command i3blocks
-	position top
+	position bottom
 	mode dock
 	modifier None
 }
