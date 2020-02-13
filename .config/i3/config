@@ -9,8 +9,8 @@
 
 # #---Basic Definitions---# #
 for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 10
+gaps inner 5
+gaps outer 5
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
@@ -33,10 +33,15 @@ for_window [instance="dropdown_*"] move position center
 
 bar {
 	font pango:mono 10
-	status_command i3blocks
-	position bottom
-	mode dock
-	modifier None
+	status_command i3status -c /home/bguillem/.config/i3/i3stat
+	position top
+	colors {
+		background #2f343f
+		focused_workspace #2f343e #2d343e #ffffff
+		inactive_workspace #2d343f #2f343f #111111
+	}
+	#mode dock
+	#modifier None
 }
 
 # #---Basic Bindings---# #
@@ -55,7 +60,7 @@ bindsym $mod+grave		exec --no-startup-id dmenuunicode
 ##bindsym $mod+asciitilde
 
 #STOP/HIDE EVERYTHING:
-bindsym $mod+Shift+Delete	exec --no-startup-id amixer sset Master mute ; exec --no-startup-id mpc pause && pkill -RTMIN+10 i3blocks ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e $FILE
+bindsym $mod+Shift+Delete	exec --no-startup-id amixer sset Master mute ; exec --no-startup-id mpc pause ; pkill -RTMIN+10 i3blocks ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e $FILE
 
 # Show selection:
 bindsym $mod+Insert		exec --no-startup-id showclip
@@ -68,16 +73,22 @@ bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec -
 bindsym $mod+w			exec $term -e nmtui
 bindsym $mod+Shift+w		exec --no-startup-id $BROWSER
 
+bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
+bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
+
 bindsym $mod+r 			exec $term -e $FILE
 bindsym $mod+Shift+r		exec --no-startup-id winresize
 
 bindsym $mod+t			split toggle
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 
+bindsym $mod+y			exec $term -e calcurse -D ~/.config/calcurse
 bindsym $mod+Shift+y		exec --no-startup-id i3resize left
 
+bindsym $mod+u			exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+Shift+u		exec --no-startup-id i3resize down
 
+bindsym $mod+i 			exec $term -e htop
 bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 
 bindsym $mod+o			sticky toggle
@@ -140,7 +151,7 @@ bindsym $mod+n			exec $term -e newsboat && pkill -RTMIN+6 i3blocks
 bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id hover right
 
 bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
-bindsym $mod+Shift+m		exec --no-startup-id amixer sset Master toggle && pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+m		exec --no-startup-id amixer sset Master toggle; pkill -RTMIN+10 i3blocks
 
 # #---Workspace Bindings---# #
 bindsym $mod+Home		workspace $ws1
@@ -197,17 +208,32 @@ bindsym $mod+Shift+8	move container to workspace $ws8
 bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
 
+for_window [class="Pinentry"] sticky enable
+for_window [class="sent"] border pixel 0px
+for_window [title="GIMP Startup"] move workspace $ws5
+for_window [class="Gimp"] move workspace $ws5
+for_window [window_role="GtkFileChooserDialog"] resize set 800 600
+for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
 
+# Bindings to make the webcam float and stick.
+for_window [title="mpvfloat"] floating enable
+for_window [title="mpvfloat"] sticky enable
+for_window [title="mpvfloat"] border pixel 0
+no_focus [title="mpvfloat"]
+
 # #---Function Buttons---# #
+bindsym $mod+F1		exec --no-startup-id groff -mom ~/.local/share/larbs/readme.mom -Tpdf | zathura -
 bindsym $mod+F2		restart
 bindsym $mod+F3		exec --no-startup-id displayselect
 bindsym $mod+F4		exec --no-startup-id prompt "Hibernate computer?" "$hibernate"
 bindsym $mod+F5		exec --no-startup-id $netrefresh
 bindsym $mod+F6		exec --no-startup-id torwrap
 bindsym $mod+F7		exec --no-startup-id td-toggle
+bindsym $mod+F8		exec --no-startup-id mailsync
 bindsym $mod+F9		exec --no-startup-id dmenumount
 bindsym $mod+F10	exec --no-startup-id dmenuumount
+bindsym $mod+F11	exec --no-startup-id ducksearch
 bindsym $mod+F12	exec $term -e nmtui
 
 # #---Arrow Keys---# #
@@ -226,10 +252,10 @@ bindsym $mod+Ctrl+Right		move workspace to output right
 
 # #---Media Keys---# #
 # Volume keys
-bindsym $mod+plus		exec --no-startup-id amixer sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym $mod+Shift+plus		exec --no-startup-id amixer sset Master 15%+ && pkill -RTMIN+10 i3blocks
-bindsym $mod+minus 		exec --no-startup-id amixer sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+Shift+minus	exec --no-startup-id amixer sset Master 15%- && pkill -RTMIN+10 i3blocks
+bindsym $mod+plus		exec --no-startup-id amixer sset Master 5%+; pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+plus		exec --no-startup-id amixer sset Master 15%+; pkill -RTMIN+10 i3blocks
+bindsym $mod+minus 		exec --no-startup-id amixer sset Master 5%-; pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+minus	exec --no-startup-id amixer sset Master 15%-; pkill -RTMIN+10 i3blocks
 bindsym $mod+less 		exec --no-startup-id mpc prev
 bindsym $mod+Shift+less		exec --no-startup-id mpc seek 0%
 bindsym $mod+greater		exec --no-startup-id mpc next
@@ -250,13 +276,13 @@ bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec --no-startup-id xset dpms force off
 
 # #---Extra XF86 Keys---# #
-bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 10%- && pkill -RTMIN+10 i3blocks
-bindsym Control+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 1%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 10%+ && pkill -RTMIN+10 i3blocks
-bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 1%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle; pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 5%-; pkill -RTMIN+10 i3blocks
+bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 10%-; pkill -RTMIN+10 i3blocks
+bindsym Control+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 1%-; pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 5%+; pkill -RTMIN+10 i3blocks
+bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 10%+; pkill -RTMIN+10 i3blocks
+bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 1%+; pkill -RTMIN+10 i3blocks
 bindsym XF86PowerOff		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 ##bindsym XF86Copy		exec
 ##bindsym XF86Open		exec
@@ -288,6 +314,7 @@ bindsym XF86AudioRewind		exec --no-startup-id mpc seek -10
 bindsym XF86AudioForward	exec --no-startup-id mpc seek +10
 ##bindsym XF86Phone		exec
 ##bindsym XF86Tools		exec
+bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
 bindsym XF86Reload		restart
 ##bindsym XF86ScrollUp		exec
 ##bindsym XF86ScrollDown		exec
@@ -330,3 +357,4 @@ bindsym XF86Documents		exec $term -e $FILE ~/Documents
 ##bindsym XF86Battery		exec
 ##bindsym XF86Bluetooth		exec
 bindsym XF86WLAN		exec $netrefresh
+exec_always --no-startup-id notify-send -i ~/.local/share/larbs/larbs.png 'Welcome to LARBS:' 'Press Super+F1 for the manual.' -t 10000
