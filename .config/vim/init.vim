@@ -4,6 +4,7 @@ if ! filereadable(expand('~/.vim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ~/.vim/autoload/
     silent !cp ~/.config/vim/bguillem.vim /usr/share/vim/vim82/colors/.
+    silent !cp ~/.config/vim/bogdan.vim /usr/share/vim/vim82/colors/.
 	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.vim/autoload/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
@@ -34,7 +35,7 @@ set nohlsearch
 set clipboard+=unnamedplus
 
 " Colors :
-	colorscheme bguillem
+	colorscheme bogdan
 	let g:lightline = { 'colorscheme': 'nightfly'}
 
 " Column at 80 characters :
