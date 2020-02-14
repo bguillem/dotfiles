@@ -8,6 +8,10 @@
 # and so they are needed there. To prevent doubling up commands, I source them
 # here with the line below.
 
+# uncomment these for dual screen setup
+# xrandr --auto --output DVI-D-0 --mode 1920x1080 --rate 144.00 --right-of HDMI-1
+# feh --bg-scale ~/.config/wall.png
+
 [ -f ~/.xprofile ] && . ~/.xprofile
 
 exec i3
