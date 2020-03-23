@@ -2,4 +2,4 @@
 
 dbus-update-activation-environnement --systemd DBUS_SESSION_BUS_ADDRES DISPLAY XAUTHORITY
 
-xcompmgr -c &
+xcompmgr &
