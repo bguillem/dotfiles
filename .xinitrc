@@ -10,8 +10,9 @@
 
 # uncomment these for dual screen setup
 # xrandr --auto --output DVI-D-0 --mode 1920x1080 --rate 144.00 --right-of HDMI-1
-# feh --bg-scale ~/.config/wall.png
+feh --bg-scale ~/.config/wallpapers/alena-aenami-grave31.jpg
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
 exec i3
+
