@@ -1,4 +1,4 @@
-#
+# bguillem
 # ~/.bashrc
 #
 
@@ -7,38 +7,38 @@
 
 # Make colorcoding available for everyone
 
-Black='\e[0;30m'        # Black
-Red='\e[0;31m'          # Red
-Green='\e[0;32m'        # Green
-Yellow='\e[0;33m'       # Yellow
-Blue='\e[0;34m'         # Blue
-Purple='\e[0;35m'       # Purple
-Cyan='\e[0;36m'         # Cyan
-White='\e[0;37m'        # White
+Black='\[\e[0;30m\]'        # Black
+Red='\[\e[0;31m\]'          # Red
+Green='\[\e[0;32m\]'        # Green
+Yellow='\[\e[0;33m\]'       # Yellow
+Blue='\[\e[0;34m\]'         # Blue
+Purple='\[\e[0;35m\]'       # Purple
+Cyan='\[\e[0;36m\]'         # Cyan
+White='\[\e[0;37m\]'        # White
 
 # Bold
-BBlack='\e[1;30m'       # Black
-BRed='\e[1;31m'         # Red
-BGreen='\e[1;32m'       # Green
-BYellow='\e[1;33m'      # Yellow
-BBlue='\e[1;34m'        # Blue
-BPurple='\e[1;35m'      # Purple
-BCyan='\e[1;36m'        # Cyan
-BWhite='\e[1;37m'       # White
+BBlack='\[\e[1;30m\]'       # Black
+BRed='\[\e[1;31m\]'         # Red
+BGreen='\[\e[1;32m\]'       # Green
+BYellow='\[\e[1;33m\]'      # Yellow
+BBlue='\[\e[1;34m\]'        # Blue
+BPurple='\[\e[1;35m\]'      # Purple
+BCyan='\[\e[1;36m\]'        # Cyan
+BWhite='\[\e[1;37m\]'       # White
 
 # Background
-On_Black='\e[40m'       # Black
-On_Red='\e[41m'         # Red
-On_Green='\e[42m'       # Green
-On_Yellow='\e[43m'      # Yellow
-On_Blue='\e[44m'        # Blue
-On_Purple='\e[45m'      # Purple
-On_Cyan='\e[46m'        # Cyan
-On_White='\e[47m'       # White
+On_Black='\[\e[40m\]'       # Black
+On_Red='\[\e[41m\]'         # Red
+On_Green='\[\e[42m\]'       # Green
+On_Yellow='\[\e[43m\]'      # Yellow
+On_Blue='\[\e[44m\]'        # Blue
+On_Purple='\[\e[45m\]'      # Purple
+On_Cyan='\[\e[46m\]'        # Cyan
+On_White='\[\e[47m\]'       # White
 
-NC="\e[m"               # Color Reset
+NC="\[\e[m\]"               # Color Reset
 
-export PS1="\e[0;35m\W\e[m "
+export PS1="${Purple}\W${NC} "
 
 # new alert text
 ALERT=${BWhite}${On_Red} # Bold White on red background
@@ -53,7 +53,7 @@ alias ll="ls -lisa --color=auto"
 alias lsl="ls -lhFA | less"
 alias home="cd ~"
 alias df="df -ahiT --total"
-alias mkdir="mkdir -pv"
+alias mkdir="mkdir -p"
 alias userlist="cut -d: -f1 /etc/passwd"
 alias fhere="find . -name "
 alias free="free -mt"
@@ -68,14 +68,25 @@ alias grep='grep --color=auto'
 alias bl="blih -u bogdan.guillemoles@epitech.eu"
 alias sdn="shutdown -h now"
 alias upd="sudo pacman -Syu; yay"
+alias clean_repo="rm *gc* unit_tests; make fclean"
+alias mktr="clean_repo; make tests_run_clean"
+alias bc="bc -q"
+alias code="vscodium"
+
+shopt -s autocd
 
 # git aliases
-alias gcl="git clone"
-alias gcm="git commit -m"
-alias gch="git checkout"
+alias gits="git status"
+alias gita="git add"
+alias gitcl="git clone"
+alias gitcm="git commit -m"
+alias gitch="git checkout"
 alias glog="git shortlog"
 alias gitb="git branch"
-alias gp="git push"
+alias gitp="git push"
+
+# shortcuts
+alias lib="cd ~/work/github/perso/teklib"
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
@@ -137,7 +148,7 @@ mcd () {
 }
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH:$HOME/.scripts"
+PATH="$HOME/.local/bin:$PATH:$HOME/.scripts"
 
 [ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
