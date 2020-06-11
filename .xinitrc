@@ -9,9 +9,10 @@
 # here with the line below.
 
 # uncomment these for dual screen setup
-xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --right-of HDMI-2 --mode 1920x1080 --rate
+#xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --right-of HDMI-2 --mode 1920x1080 --rate
 feh --bg-scale ~/.config/wallpapers/alena-aenami-grave31.jpg
 
+# cool vim stuff
 xset r rate 300 25
 setxkbmap -option caps:escape
 
