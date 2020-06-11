@@ -9,8 +9,11 @@
 # here with the line below.
 
 # uncomment these for dual screen setup
-# xrandr --auto --output DVI-D-0 --mode 1920x1080 --rate 144.00 --right-of HDMI-1
+xrandr --auto --output eDP-1 --mode 1920x1080 --rate 60 --right-of HDMI-2 --mode 1920x1080 --rate
 feh --bg-scale ~/.config/wallpapers/alena-aenami-grave31.jpg
+
+xset r rate 300 25
+setxkbmap -option caps:escape
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
