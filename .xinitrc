@@ -16,7 +16,7 @@ feh --bg-scale ~/.config/wallpapers/alena-aenami-grave31.jpg
 xset r rate 300 25
 setxkbmap -option caps:escape
 
-[ -f ~/.xprofile ] && . ~/.xprofile
+[[ -f ~/.xprofile ]] || source ~/.xprofile
 
 exec i3
 

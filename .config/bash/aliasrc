@@ -1,0 +1,53 @@
+#!/bin/bash
+#~ bogdzn's aliases
+
+# misc term
+alias cls="clear"
+alias ..="cd .."
+alias cd..="cd .."
+alias ll="ls -lisa --color=auto"
+alias lsl="ls -lhFA | less"
+alias home="cd ~"
+
+
+# prettier outputs by default
+alias ls="ls -CF --color=auto"
+alias df="df -ahiT --total"
+alias mkdir="mkdir -p"
+alias ps="ps auxf"
+alias wget="wget -c"
+alias grep='grep --color=auto'
+alias bc="bc -q"
+
+
+# git
+alias gits="git status"
+alias gita="git add"
+alias gitcl="git clone"
+alias gitcm="git commit -m"
+alias gitch="git checkout"
+alias glog="git shortlog"
+alias gitb="git branch"
+alias gitp="git push"
+
+
+# random
+alias userlist="cut -d: -f1 /etc/passwd"
+alias fhere="find . -name "
+alias free="free -mt"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias histg="history | grep"
+alias myip="curl http://ipecho.net/plain; echo"
+alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
+alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+
+# most used
+alias sdn="shutdown -h now"
+alias upd="sudo pacman -Syu; yay"
+
+
+# epitech
+alias bl="blih -u bogdan.guillemoles@epitech.eu"
+alias clean_repo="rm *gc* unit_tests; make fclean"
+alias mktr="clean_repo; make tests_run_clean"
+
