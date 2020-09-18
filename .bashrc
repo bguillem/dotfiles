@@ -9,9 +9,9 @@
 shopt -s autocd
 
 # executing config files
-[[ -f ~/.config/bash/aliasrc ]]       &&  source .config/bash/aliasrc
-[[ -f ~/.config/bash/functionrc ]]    &&  source .config/bash/functionrc
-[[ -f ~/.config/bash/promptrc ]]      &&  source .config/bash/promptrc
+[[ -f ~/.config/bash/aliasrc ]]       &&  source ~/.config/bash/aliasrc
+[[ -f ~/.config/bash/functionrc ]]    &&  source ~/.config/bash/functionrc
+[[ -f ~/.config/bash/promptrc ]]      &&  source ~/.config/bash/promptrc
 
 
 # set PATH so it includes user's private bin directories
