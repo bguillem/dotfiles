@@ -43,11 +43,10 @@ alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 
 # most used
 alias sdn="shutdown -h now"
-alias upd="sudo pacman -Syu; yay"
+alias upd="sudo pacman -Syu --noconfirm && yay -Syu --noconfirm"
 
 
-# epitech
-alias bl="blih -u bogdan.guillemoles@epitech.eu"
+# C stuff
 alias clean_repo="rm *gc* unit_tests; make fclean"
 alias mktr="clean_repo; make tests_run_clean"
 

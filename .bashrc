@@ -13,6 +13,9 @@ shopt -s autocd
 [[ -f ~/.config/bash/functionrc ]]    &&  source ~/.config/bash/functionrc
 [[ -f ~/.config/bash/promptrc ]]      &&  source ~/.config/bash/promptrc
 
+# cool vim stuff
+xset r rate 300 25
+setxkbmap -option caps:escape
 
 # set PATH so it includes user's private bin directories
 PATH="$HOME/.local/bin:$PATH:$HOME/.scripts"
