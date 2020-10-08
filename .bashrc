@@ -24,14 +24,7 @@ PATH="$HOME/.local/bin:$PATH:$HOME/.scripts"
 # calls ~/.config/bash/functionrc.get_installer
 INSTALLER=$(get_installer)
 
-# sets java HOME
-JAVA_HOME="/home/bogdan/.sdkman/candidates/java/current"
-
 [ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 eval "`dircolors -b $DIR_COLORS`"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/bogdan/.sdkman"
-[[ -s "/home/bogdan/.sdkman/bin/sdkman-init.sh" ]] && source "/home/bogdan/.sdkman/bin/sdkman-init.sh"
