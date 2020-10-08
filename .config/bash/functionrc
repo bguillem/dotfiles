@@ -60,4 +60,10 @@ mcd () {
   cd $1
 }
 
-
+#finds the package installer used by the installation
+get_installer () {
+    which zypper &> /dev/null && echo "sudo zypper -y install"
+    which pacman &> /dev/null && echo "sudo pacman --noconfirm --needed -S"
+    which dnf &> /dev/null && echo "sudo dnf -y install"
+    which apt &> /dev/null && echo "sudo apt -y install"
+}
