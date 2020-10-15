@@ -25,11 +25,37 @@ call plug#end()
     colorscheme jummidark
     let g:airline_theme='angr'
 
+" Buffers
+nnoremap <silent> <leader>1 :buffer1<CR>
+nnoremap <silent> <leader>2 :buffer2<CR>
+nnoremap <silent> <leader>3 :buffer3<CR>
+nnoremap <silent> <leader>4 :buffer4<CR>
+nnoremap <silent> <leader>5 :buffer5<CR>
+nnoremap <silent> <leader>6 :buffer6<CR>
+nnoremap <silent> <leader>7 :buffer7<CR>
+nnoremap <silent> <leader>8 :buffer8<CR>
+nnoremap <silent> <leader>9 :buffer9<CR>
+nnoremap <silent> <leader>0 :buffer0<CR>
+
+nnoremap <leader>z :vnew<CR>e .<CR>
+
+nnoremap <silent><leader><BS>1 :bdelete 1<CR>
+nnoremap <silent><leader><BS>2 :bdelete 2<CR>
+nnoremap <silent><leader><BS>3 :bdelete 3<CR>
+nnoremap <silent><leader><BS>4 :bdelete 4<CR>
+nnoremap <silent><leader><BS>5 :bdelete 5<CR>
+nnoremap <silent><leader><BS>6 :bdelete 6<CR>
+nnoremap <silent><leader><BS>7 :bdelete 7<CR>
+nnoremap <silent><leader><BS>8 :bdelete 8<CR>
+nnoremap <silent><leader><BS>9 :bdelete 9<CR>
+nnoremap <silent><leader><BS>0 :bdelete 0<CR>
+
+
 " Remaps :
 	nnoremap c "_c
-    nnoremap <leader><F1>       :tabnew .<CR>e .<CR>
-    nnoremap <leader><F2>       :tabn<CR>
-    nnoremap <leader><F3>       :tabp<CR>
+    nnoremap <leader>x          :tabnew .<CR>e .<CR>
+    nnoremap <leader>c          :tabn<CR>
+    nnoremap <leader>x          :tabp<CR>
     nnoremap <leader>h          :wincmd h<CR>
     nnoremap <leader>j          :wincmd j<CR>
     nnoremap <leader>k          :wincmd k<CR>
