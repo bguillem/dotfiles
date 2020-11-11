@@ -1,27 +1,31 @@
-" last updated : 10/11/2020
+" last updated : 11/11/2020
 " note: this works with vim and neovim, but if you want to take full advantage of fzf, nvim is better.
 
 " ------------------------------------
 "           INSTALLATION
 " ------------------------------------
 
+" dependencies: npm the_silver_surfer fd ripgrep fzf universal-ctags
+" package name vary depending on the distributions !
 
 " This condition is used to check if the plugins are already installed. If the plug.vim file is not here, this sequence is triggered.
-if ! filereadable(expand('~/.config/vim/autoload/plug.vim'))
+" don't forget to call CocBaseInstall to install basic plugins
+" reference: https://www.chrisatmachine.com/Neovim/08-fzf/
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
-    silent !mkdir -p ~/.config/vim/autoload/
-    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/vim/autoload/plug.vim
+    silent !mkdir -p ~/.config/nvim/autoload/
+    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
     autocmd VimEnter * PlugInstall
-    call CocBaseInstall()
 endif
 
 " Installation routine. Run :PlugInstall to install the plugins.
-call plug#begin('~/.config/vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " UI
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree'
+Plug 'Nero-F/vim-tek-header' " generates Epitech Header when using Leader + H
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -58,7 +62,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " backup handling
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 
 " Misc settings, you'll find these in pretty much all .vimrc files :
@@ -188,10 +192,10 @@ nnoremap <silent><leader>a   :bprevious<CR>                             " go to 
 nnoremap <leader>x           :tabnew .<CR>e .<CR>                       " loads a new tab
 nnoremap <leader>v           :tabn<CR>                                  " go to next tab
 nnoremap <leader>c           :tabp<CR>                                  " go to previous tab
-nnoremap <leader>h           :wincmd h<CR>                              " move cursor to left window
-nnoremap <leader>j           :wincmd j<CR>                              " move cursor to down window
-nnoremap <leader>k           :wincmd k<CR>                              " move cursor to up window
-nnoremap <leader>l           :wincmd l<CR>                              " move cursor to right window
+nnoremap <leader><left>      :wincmd h<CR>                              " move cursor to left window
+nnoremap <leader><down>      :wincmd j<CR>                              " move cursor to down window
+nnoremap <leader><up>        :wincmd k<CR>                              " move cursor to up window
+nnoremap <leader><right>     :wincmd l<CR>                              " move cursor to right window
 nnoremap <leader>m           :NERDTreeToggle<CR>                        " toggles NERDTree
 nnoremap <leader>u           :UndotreeShow<CR>                          " toggles UndoTree
 nnoremap <leader>pv          :wincmd v<bar> :Ex <CR>                    " splits screen and opens another buffer
