@@ -1,16 +1,12 @@
-" last updated : 11/11/2020
+" last updated : 10/11/2020
 " note: this works with vim and neovim, but if you want to take full advantage of fzf, nvim is better.
 
 " ------------------------------------
 "           INSTALLATION
 " ------------------------------------
 
-" dependencies: npm the_silver_surfer fd ripgrep fzf universal-ctags
-" package name vary depending on the distributions !
 
 " This condition is used to check if the plugins are already installed. If the plug.vim file is not here, this sequence is triggered.
-" don't forget to call CocBaseInstall to install basic plugins
-" reference: https://www.chrisatmachine.com/Neovim/08-fzf/
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     silent !mkdir -p ~/.config/nvim/autoload/
@@ -25,7 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree'
-Plug 'Nero-F/vim-tek-header' " generates Epitech Header when using Leader + H
+Plug 'Nero-F/vim-tek-header'
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -89,6 +85,7 @@ set shortmess+=c
 set incsearch
 set cmdheight=2
 set shortmess+=c
+set relativenumber
 
 " tells vim which files are scala files.
 au BufRead,BufNewFile *.sbt, *.sc, set filetype=scala
@@ -175,39 +172,39 @@ command! -bang -nargs=* GGrep
 " ------------------------------------
 
 
-nnoremap <leader>z           :vnew<CR>e .<CR>                           " create new buffer in splitscreen
-nnoremap <leader><BACKSPACE> :bd<CR>                                    " deletes current buffer
-nnoremap <silent><leader>1   :bdelete 1<CR>                             " deletes buffer number 1
-nnoremap <silent><leader>2   :bdelete 2<CR>                             " deletes buffer number 2
-nnoremap <silent><leader>3   :bdelete 3<CR>                             " deletes buffer number 3
-nnoremap <silent><leader>4   :bdelete 4<CR>                             " deletes buffer number 4
-nnoremap <silent><leader>5   :bdelete 5<CR>                             " deletes buffer number 5
-nnoremap <silent><leader>6   :bdelete 6<CR>                             " deletes buffer number 6
-nnoremap <silent><leader>7   :bdelete 7<CR>                             " deletes buffer number 7
-nnoremap <silent><leader>8   :bdelete 8<CR>                             " deletes buffer number 8
-nnoremap <silent><leader>9   :bdelete 9<CR>                             " deletes buffer number 9
-nnoremap <silent><leader>0   :bdelete 0<CR>                             " deletes buffer number 0
-nnoremap <silent><leader>s   :bnext<CR>                                 " go to next buffer
-nnoremap <silent><leader>a   :bprevious<CR>                             " go to previous buffer
-nnoremap <leader>x           :tabnew .<CR>e .<CR>                       " loads a new tab
-nnoremap <leader>v           :tabn<CR>                                  " go to next tab
-nnoremap <leader>c           :tabp<CR>                                  " go to previous tab
-nnoremap <leader><left>      :wincmd h<CR>                              " move cursor to left window
-nnoremap <leader><down>      :wincmd j<CR>                              " move cursor to down window
-nnoremap <leader><up>        :wincmd k<CR>                              " move cursor to up window
-nnoremap <leader><right>     :wincmd l<CR>                              " move cursor to right window
-nnoremap <leader>m           :NERDTreeToggle<CR>                        " toggles NERDTree
-nnoremap <leader>u           :UndotreeShow<CR>                          " toggles UndoTree
-nnoremap <leader>pv          :wincmd v<bar> :Ex <CR>                    " splits screen and opens another buffer
-nnoremap <silent> <Leader>=  :vertical resize +5<CR>                    " resize +5
-nnoremap <silent> <Leader>-  :vertical resize -5<CR>                    " resize -5
-map <leader>f                :Files<CR>                                 " search for a file
-map <leader>b                :Buffers<CR>                               " search in your current buffers
-nnoremap <leader>w           :Lines<CR>                                 " search for a specific line in the file
-nnoremap <leader>e           :BLines<CR>                                " search for a specific line in your buffers
-nnoremap <leader>g           :Rg<CR>                                    " search for patterns with ripgrep
-nnoremap <leader>t           :Tags<CR>                                  " search for tags
-
+nnoremap <leader>z           :vnew<CR>Ex .<CR>
+nnoremap <leader><BACKSPACE> :bd<CR>
+nnoremap <silent><leader>1   :bdelete 1<CR>
+nnoremap <silent><leader>2   :bdelete 2<CR>
+nnoremap <silent><leader>3   :bdelete 3<CR>
+nnoremap <silent><leader>4   :bdelete 4<CR>
+nnoremap <silent><leader>5   :bdelete 5<CR>
+nnoremap <silent><leader>6   :bdelete 6<CR>
+nnoremap <silent><leader>7   :bdelete 7<CR>
+nnoremap <silent><leader>8   :bdelete 8<CR>
+nnoremap <silent><leader>9   :bdelete 9<CR>
+nnoremap <silent><leader>0   :bdelete 0<CR>
+nnoremap <silent><leader>s   :bnext<CR>
+nnoremap <silent><leader>a   :bprevious<CR>
+nnoremap <leader>x           :tabnew .<CR>e .<CR>
+nnoremap <leader>v           :tabn<CR>
+nnoremap <leader>c           :tabp<CR>
+nnoremap <leader><left>      :wincmd h<CR>
+nnoremap <leader><down>      :wincmd j<CR>
+nnoremap <leader><up>        :wincmd k<CR>
+nnoremap <leader><right>     :wincmd l<CR>
+nnoremap <leader>m           :NERDTreeToggle<CR>
+nnoremap <leader>u           :UndotreeShow<CR>
+nnoremap <leader>pv          :wincmd v<bar> :Ex <CR>
+nnoremap <silent> <Leader>=  :vertical resize +5<CR>
+nnoremap <silent> <Leader>-  :vertical resize -5<CR>
+map <leader>f                :Files<CR>
+map <leader>b                :Buffers<CR>
+nnoremap <leader>r           :Lines<CR>
+nnoremap <leader>e           :BLines<CR>
+nnoremap <leader>g           :Rg<CR>
+nnoremap <leader>t           :Tags<CR>
+nnoremap <leader>l           :CocList<CR>
 
 " ------------------------------------
 "             FUNCTIONS
@@ -223,19 +220,20 @@ fun! GoCoc()
     inoremap <buffer> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     inoremap <buffer> <silent><expr> <C-space> coc#refresh()
     " GoTo code navigation.
-    nmap <silent> <leader>o         :Format<CR>                         " calls scalafmt
-    nmap <silent> <leader>d         :call <SID>show_documentation()<>   " shows available documentation
-    nmap <leader>gd                 <Plug>(coc-definition)              " shows function type definition
-    nmap <silent> <leader>q         :call clangd.switchSourceHeader<CR> " switches between source and header for clangd
-    nmap <leader>gy                 <Plug>(coc-type-definition)         " shows function definition
-    nmap <leader>gi                 <Plug>(coc-implementation)          " shows function implementation
-    nmap <leader>gr                 <Plug>(coc-references)              " shows function references
-    nmap <leader>rr                 <Plug>(coc-rename)                  " renames variable or function
-    nmap <leader>g[                 <Plug>(coc-diagnostic-prev)         " go to previous diagnostic
-    nmap <leader>g]                 <Plug>(coc-diagnostic-next)         " go to next diagnostic
-    nmap <silent> <leader>gp        <Plug>(coc-diagnostic-prev-error)   " go to previous error
-    nmap <silent> <leader>gn        <Plug>(coc-diagnostic-next-error)   " go to next error
-    nnoremap <leader>cr             :CocRestart
+    nmap <silent> <leader>o :Format<CR>
+    nmap <silent> <leader>d :call <SID>show_documentation()<>
+    nmap <leader>gd <Plug>(coc-definition)
+    nmap <silent> <leader>q :call clangd.switchSourceHeader<CR>
+    nmap <leader>gy <Plug>(coc-type-definition)
+    nmap <leader>gi <Plug>(coc-implementation)
+    nmap <leader>gr <Plug>(coc-references)
+    nmap <leader>rn <Plug>(coc-rename)
+    nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+    nmap <leader>g] <Plug>(coc-diagnostic-next)
+    nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+    nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+    nmap <silent> <leader>ws <Plug>(coc-metals-expand-decoration)
+    nnoremap <leader>cr :CocRestart
 endfun
 
 function! s:check_back_space() abort
@@ -261,6 +259,11 @@ endfunction
 "             AUTORUNS
 " ------------------------------------
 
+" Highlights comment in json files
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
