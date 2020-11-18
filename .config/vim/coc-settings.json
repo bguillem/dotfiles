@@ -1,0 +1,10 @@
+{
+    "suggest.enablePreselect": true,
+    "coc.preferences.enableMarkdown": true,
+    "coc.preferences.formatOnInsertLeave": true,
+    "coc.preferences.hoverTarget": "echo",
+    "codeLens.enable": true,
+    "metals.statusBarEnabled": true,
+    "metals.showImplicitArguments": true,
+    "metals.showInferredType": true
+}
