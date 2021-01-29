@@ -8,6 +8,7 @@ alias cd..="cd .."
 alias ll="ls -lisa --color=auto"
 alias lsl="ls -lhFA | less"
 alias home="cd ~"
+alias vim="nvim"
 
 
 # prettier outputs by default
@@ -26,9 +27,11 @@ alias gita="git add"
 alias gitcl="git clone"
 alias gitcm="git commit -m"
 alias gitch="git checkout"
-alias glog="git shortlog"
+alias gitsh="git shortlog"
+alias gitl="git log --oneline --color --graph"
 alias gitb="git branch"
 alias gitp="git push"
+alias gitf="git fetch"
 
 
 # random
@@ -40,13 +43,14 @@ alias histg="history | grep"
 alias myip="curl http://ipecho.net/plain; echo"
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+alias restartnet='sudo systemctl restart NetworkManager'
 
 # most used
 alias sdn="shutdown -h now"
-alias upd="sudo pacman -Syu --noconfirm && yay -Syu --noconfirm"
+alias upd="sudo pacman -Syu --noconfirm > /dev/null && yay -Syu --noconfirm > /dev/null"
 
 
 # C stuff
 alias clean_repo="rm *gc* unit_tests; make fclean"
 alias mktr="clean_repo; make tests_run_clean"
-
+alias vg="valgrind -v --leak-check=full --show-leak-kinds=all --log-file=valgrind.txt"
