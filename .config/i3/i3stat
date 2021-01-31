@@ -31,14 +31,14 @@ battery all {
 	format = "Battery: %percentage%status"
 	status_chr = "⚡"
 	status_bat = " "
-	status_unk = " ?"
+	status_unk = " "
 	status_full = " FULL"
 	color_bad = "#22ddcc"
 }
 
 wireless _first_ {
         format_up = "Wi-Fi: %ip (%quality @ %essid)"
-        format_down = " down"
+        format_down = " down"
 }
 
 ethernet _first_ {

@@ -1,26 +1,19 @@
-# vim: filetype=i3
 # This config file will use environmental variables such as $BROWSER and $TERMINAL.
-# You can set these variables in ~/.profile or ~/.bash_profile if you have it as below:
+# You can set these variables in ~/.profile or ~/.bash_profile
 #
 #export TERMINAL="alacritty"
 
 # #---Basic Definitions---# #
 for_window [class="^.*"] border pixel 2
 set $term --no-startup-id $TERMINAL
-set $mod Mod4
+Set $mod Mod4
+font pango:mono 10
 
-# #---Dropdown Windows---# #
-# General dropdown window traits. The order can matter.
-for_window [instance="dropdown_*"] floating enable
-for_window [instance="dropdown_*"] move scratchpad
-for_window [instance="dropdown_*"] sticky enable
-for_window [instance="dropdown_*"] scratchpad show
-for_window [instance="dropdown_tmuxdd"] resize set 625 450
-for_window [instance="dropdown_dropdowncalc"] resize set 800 300
-for_window [instance="dropdown_tmuxdd"] border pixel 3
-for_window [instance="dropdown_dropdowncalc"] border pixel 2
-for_window [instance="dropdown_*"] move position center
+# #---Exec always---# #
+exec_always xset r rate 300 25
+exec_always setxkbmap -option caps:escape
 
+# #---i3 status bar---# #
 bar {
 	font pango:mono 10
 	status_command i3status -c ~/.config/i3/i3stat
@@ -39,50 +32,26 @@ bindsym $mod+Return 		exec --no-startup-id alacritty
 bindsym $mod+Shift+Return	exec --no-startup-id samedir
 
 bindsym $mod+Shift+space 	floating toggle
-bindsym $mod+space		focus mode_toggle
-
-bindsym $mod+Escape		workspace prev
+bindsym $mod+Escape		    workspace prev
 
 # #---Letter Key Bindings---# #
 bindsym $mod+q			[con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
-
-bindsym $mod+u			exec --no-startup-id i3resize down
-bindsym $modi			exec --no-startup-id i3resize up
-bindsym $mod+o			exec --no-startup-id i3resize right
-bindsym $mod+p 			exec --no-startup-id i3resize left
-
-bindsym $mod+d			exec --no-startup-id rofi -show run
-
-set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
-mode "$freeze" { bindsym $mod+Shift+f mode "default"
-}
+bindsym $mod+space		exec --no-startup-id rofi -show run
 bindsym $mod+f			fullscreen toggle
-
 bindsym $mod+x			exec --no-startup-id i3lock-fancy
-
 bindsym $mod+b			bar mode toggle
-bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left
+bindsym $mod+Shift+b	floating toggle; sticky toggle; exec --no-startup-id hover left
+bindsym $mod+s          exec --no-startup-id rofi -show ssh
+bindsym $mod+Ctrl+N     exec --no-startud-id systemctl restart NetworkManager
 
 # #---Workspace Bindings---# #
-bindsym $mod+Home		workspace $ws1
+bindsym $mod+Home		    workspace $ws1
 bindsym $mod+Shift+Home		move container to workspace $ws1
-bindsym $mod+End		workspace $ws10
+bindsym $mod+End		    workspace $ws10
 bindsym $mod+Shift+End		move container to workspace $ws10
-bindsym $mod+Prior		workspace prev
-bindsym $mod+Shift+Prior	move container to workspace prev
-bindsym $mod+Next		workspace next
-bindsym $mod+Shift+Next		move container to workspace next
-bindsym $mod+Tab		workspace back_and_forth
-bindsym $mod+XF86Back		workspace prev
-bindsym $mod+Shift+XF86Back	move container to workspace prev
-bindsym $mod+XF86Forward	workspace next
-bindsym $mod+Shift+XF86Forward	move container to workspace next
-bindsym $mod+semicolon		workspace next
+bindsym $mod+Tab		    workspace back_and_forth
 bindsym $mod+apostrophe		split horizontal ;; exec $term
-bindsym $mod+slash		split vertical ;; exec $term
-bindsym $mod+Shift+slash	kill
-bindsym $mod+backslash		workspace back_and_forth
+bindsym $mod+slash		    split vertical ;; exec $term
 
 set $ws1 "1"
 set $ws2 "2"
@@ -119,109 +88,24 @@ bindsym $mod+Shift+8	move container to workspace $ws8
 bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
 
-for_window [class="Pinentry"] sticky enable
-for_window [class="sent"] border pixel 0px
-for_window [title="GIMP Startup"] move workspace $ws5
-for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="Default - Wine desktop"] floating enable
+for_window [title="SFML game"] floating enable
+for_window [title="Microsoft Teams Notification" class = "Microsoft Teams - Preview"] floating enable
+for_window [title="Microsoft Teams Notification" class = "Microsoft Teams - preview"] floating enable
+for_window [title="MyGKrellm: System Monitor"] floating enable
 
 # #---Arrow Keys---# #
-bindsym $mod+Left		focus left
+bindsym $mod+Left		    focus left
 bindsym $mod+Shift+Left		move left
 bindsym $mod+Ctrl+Left		move workspace to output left
-bindsym $mod+Down		focus down
+bindsym $mod+Down		    focus down
 bindsym $mod+Shift+Down		move down
 bindsym $mod+Ctrl+Down		move workspace to output down
-bindsym $mod+Up			focus up
+bindsym $mod+Up			    focus up
 bindsym $mod+Shift+Up		move up
 bindsym $mod+Ctrl+Up		move workspace to output up
-bindsym $mod+Right 		focus right
+bindsym $mod+Right 		    focus right
 bindsym $mod+Shift+Right 	move right
 bindsym $mod+Ctrl+Right		move workspace to output right
-
-# For screenshots and recording
-bindsym Shift+Print 		exec --no-startup-id maimpick
-
-# #---Extra XF86 Keys---# #
-bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle; pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 5%-; pkill -RTMIN+10 i3blocks
-bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 10%-; pkill -RTMIN+10 i3blocks
-bindsym Control+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 1%-; pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 5%+; pkill -RTMIN+10 i3blocks
-bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 10%+; pkill -RTMIN+10 i3blocks
-bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 1%+; pkill -RTMIN+10 i3blocks
-bindsym XF86PowerOff		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
-##bindsym XF86Copy		exec
-##bindsym XF86Open		exec
-##bindsym XF86Paste		exec
-##bindsym XF86Cut		exec
-##bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
-##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
-##bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term -e $FILE
-##bindsym XF86Send		exec
-##bindsym XF86Xfer		exec
-bindsym XF86WWW			exec --no-startup-id $BROWSER
-##bindsym XF86DOS		exec
-bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
-##bindsym XF86RotateWindows	exec
-##bindsym XF86TaskPane		exec
-##bindsym XF86Favorites		exec
-bindsym XF86MyComputer		exec $term -e $FILE
-##bindsym XF86Back		exec
-##bindsym XF86Forward		exec
-bindsym XF86Eject		exec --no-startup-id dmenuumount
-bindsym XF86AudioNext		exec --no-startup-id mpc next
-bindsym XF86AudioPlay		exec --no-startup-id mpc toggle
-bindsym XF86AudioPrev		exec --no-startup-id mpc prev
-bindsym XF86AudioStop		exec --no-startup-id mpc toggle
-##bindsym XF86AudioRecord
-bindsym XF86AudioRewind		exec --no-startup-id mpc seek -10
-bindsym XF86AudioForward	exec --no-startup-id mpc seek +10
-##bindsym XF86Phone		exec
-##bindsym XF86Tools		exec
-bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
-bindsym XF86Reload		restart
-##bindsym XF86ScrollUp		exec
-##bindsym XF86ScrollDown		exec
-##bindsym XF86New		exec
-##bindsym XF86LaunchA		exec
-##bindsym XF86LaunchB		exec
-##bindsym XF86Launch2		exec
-##bindsym XF86Launch3		exec
-##bindsym XF86Launch4		exec
-##bindsym XF86Launch5		exec
-##bindsym XF86Launch6		exec
-##bindsym XF86Launch7		exec
-##bindsym XF86Launch8		exec
-##bindsym XF86Launch9		exec
-#bindsym XF86AudioMicMute	exec $micmute
-bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
-bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
-bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
-bindsym XF86Suspend		exec --no-startup-id lockscreen
-bindsym XF86Close		kill
-bindsym XF86WebCam		exec --no-startup-id camtoggle
-bindsym XF86Mail		exec $term -e neomutt && pkill -RTMIN+12 i3blocks
-bindsym XF86Messenger		exec $term -e weechat
-bindsym XF86Search		exec $BROWSER https://duckduckgo.com
-##bindsym XF86Go			exec
-##bindsym XF86Finance		exec
-##bindsym XF86Game		exec
-bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
-bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
-bindsym XF86Display		exec --no-startup-id displayselect
-#bindsym XF86KbdLightOnOff	exec
-#bindsym XF86KbdBrightnessDown	exec
-#bindsym XF86KbdBrightnessUp	exec
-##bindsym XF86Reply		exec
-##bindsym XF86MailForward	exec
-##bindsym XF86Save		exec
-##bindsym XF86Battery		exec
-##bindsym XF86Bluetooth		exec
-bindsym XF86WLAN		exec $netrefresh
