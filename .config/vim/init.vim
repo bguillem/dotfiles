@@ -171,8 +171,7 @@ command! -bang -nargs=* GGrep
 "             BINDS
 " ------------------------------------
 
-
-nnoremap <leader>z           :vnew<CR>Ex .<CR>
+nnoremap <leader>z           :vnew<CR>e .<CR>
 nnoremap <leader><BACKSPACE> :bd<CR>
 nnoremap <silent><leader>1   :bdelete 1<CR>
 nnoremap <silent><leader>2   :bdelete 2<CR>
@@ -233,6 +232,7 @@ fun! GoCoc()
     nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
     nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
     nmap <silent> <leader>ws <Plug>(coc-metals-expand-decoration)
+    nmap <silent> <leader>gl :metals.go-to-super-method<CR>
     nnoremap <leader>cr :CocRestart
 endfun
 
