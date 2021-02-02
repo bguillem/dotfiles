@@ -4,7 +4,8 @@
 #export TERMINAL="alacritty"
 
 # #---Basic Definitions---# #
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
+client.focused #666666 #666666 #666666 #666666 #666666
 set $term --no-startup-id $TERMINAL
 Set $mod Mod4
 font pango:mono 10
