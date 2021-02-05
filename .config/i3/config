@@ -5,7 +5,7 @@
 
 # #---Basic Definitions---# #
 for_window [class="^.*"] border pixel 1
-client.focused #666666 #666666 #666666 #666666 #666666
+client.focused #dddddd #dddddd #dddddd #dddddd #dddddd
 set $term --no-startup-id $TERMINAL
 Set $mod Mod4
 font pango:mono 10
