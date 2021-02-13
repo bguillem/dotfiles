@@ -14,5 +14,7 @@
     "codeLens.enable": true,
     "metals.statusBarEnabled": true,
     "metals.showImplicitArguments": true,
-    "metals.showInferredType": true
+    "metals.showInferredType": true,
+    "javascript.suggestionActions.enabled": false,
+    "typescript.suggestionActions.enabled": false
 }
