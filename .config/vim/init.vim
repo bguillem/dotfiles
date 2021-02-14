@@ -25,6 +25,7 @@ Plug 'Nero-F/vim-tek-header'
 
 " autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'elixir-editors/vim-elixir'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
