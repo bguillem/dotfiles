@@ -44,6 +44,7 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 alias restartnet='sudo systemctl restart NetworkManager'
+alias dockertek='docker run --rm -it -v $PWD:/home/ -w /home epitechcontent/epitest-docker /bin/bash'
 
 # most used
 alias sdn="shutdown -h now"
@@ -54,3 +55,4 @@ alias upd="sudo pacman -Syu --noconfirm > /dev/null && yay -Syu --noconfirm > /d
 alias clean_repo="rm *gc* unit_tests; make fclean"
 alias mktr="clean_repo; make tests_run_clean"
 alias vg="valgrind -v --leak-check=full --show-leak-kinds=all --log-file=valgrind.txt"
+alias preload="LD_PRELOAD=./libmy_malloc.so"
