@@ -96,6 +96,8 @@ au BufRead,BufNewFile *.sbt, *.sc, set filetype=scala
 "             VARIABLES
 " ------------------------------------
 
+" Setting filetype for all .asm files to nasm.
+let g:asmsyntax = 'nasm'
 
 " FZF stuff -- this is all default for now
 " This is the default extra key bindings
