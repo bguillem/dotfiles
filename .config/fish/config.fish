@@ -19,13 +19,18 @@ alias -s gitf "git fetch"
 alias -s fhere "find . -name"
 alias -s myip "curl http://ipecho.net/plain; echo"
 alias -s restartnet "sudo systemctl restart NetworkManager"
-alias -s dockerTek "docker run --rm it -v $PWD:/home/ -w /home epitechcontent/epitest /bin/bash"
+alias -s dockerTek "docker run --rm it -v $PWD:/home/ -w /home epitechcontent/epitest /bin/zsh"
 alias -s sdn "shutdown -h now"
 alias -s upd "sudo pacman -Syu --noconfirm && yay -Syu --noconfirm"
 alias -s clean_repo "rm *gc* unit_tests 2>/dev/null; make clean"
 alias -s vim "nvim"
 alias -s mktr "clean_repo; make tests_clean_run"
 alias -s vg "valgrind -v --leak-check=full --show-leak-kinds=all --log-file=valgrind.txt"
+
+function docker_clean
+    docker stop (docker ps -aq)
+    docker rm (docker ps -aq)
+end
 
 function ld_preload
     set LD_PRELOAD ./libmy_malloc.so
