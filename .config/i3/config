@@ -96,6 +96,8 @@ for_window [title="SFML game"] floating enable
 for_window [title="Microsoft Teams Notification" class = "Microsoft Teams - Preview"] floating enable
 for_window [title="Microsoft Teams Notification" class = "Microsoft Teams - preview"] floating enable
 for_window [title="MyGKrellm: System Monitor"] floating enable
+for_window [title="EFiM chess engine"] floating enable
+
 
 # #---Arrow Keys---# #
 bindsym $mod+Left		    focus left
